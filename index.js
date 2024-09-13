@@ -14,44 +14,7 @@ const validInputPhone= /^\+?\d*$/
 
 
 
-// FirstName.addEventListener("blur",(e)=>{
-
-//     if(!validInputName.test(FirstName.value)){
-//         errorMessage1.textContent=`это не ${e.target.getAttribute('placeholder')}`
-//     }
-//     else if(FirstName.value===''){
-//         errorMessage1.textContent=`Поле ${e.target.getAttribute('placeholder')} не должно быть пустым`
-//     }
-// })
-// FirstName.addEventListener('input',()=>{
-//     errorMessage1.textContent=``
-// })
-// EMail.addEventListener("blur",(e)=>{
-//     if(!EMail.validity.valid){
-//         errorMessage3.textContent=`Это не ${e.target.getAttribute('placeholder')}`
-//     }
-//     else if(EMail.value===''){
-//         errorMessage3.textContent=`Поле ${e.target.getAttribute('placeholder')} не должно быть пустым `
-//     }
-// })
-// EMail.addEventListener('input',()=>{
-//     errorMessage3.textContent=``
-// })
-// PhoneNumber.addEventListener("blur",(e)=>{
-//     if(!validInputPhone.test(PhoneNumber.value)){
-//         errorMessage2.textContent=`Это не ${e.target.getAttribute('placeholder')}`
-//     }
-//     else if(PhoneNumber.value===''){
-//         errorMessage2.textContent=`Поле ${e.target.getAttribute('placeholder')} не должно быть пустым`
-// }})
-// PhoneNumber.addEventListener('input',()=>{
-//     errorMessage2.textContent=``
-// })
-
-
-
-
-function validator(element,errorElement,validationfunc,errorMessageWrongInput,errorMessageEmptyString){
+const validator=(element,errorElement,validationfunc,errorMessageWrongInput,errorMessageEmptyString)=>{
     element.addEventListener("blur",(e)=>{
         if(!validationfunc(element.value)){
             errorElement.textContent=errorMessageWrongInput
