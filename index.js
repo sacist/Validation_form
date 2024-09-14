@@ -1,31 +1,44 @@
-const FirstName=document.getElementById('First_Name')
+const FirstName = document.getElementById('First_Name');
 
-const PhoneNumber=document.getElementById('Phone_Number')
+const PhoneNumber = document.getElementById('Phone_Number');
 
-const EMail=document.getElementById('EMail')
+const EMail = document.getElementById('EMail');
 
-const errorMessage1=document.querySelector('.error1')
-const errorMessage2=document.querySelector('.error2')
-const errorMessage3=document.querySelector('.error3')
+const form = document.querySelector('form');
 
+const errorMessage1 = document.querySelector('.error1');
+const errorMessage2 = document.querySelector('.error2');
+const errorMessage3 = document.querySelector('.error3');
 
-const validInputName= /^[a-zA-Zа-яА-ЯёЁ\s]*$/
-const validInputPhone= /^\+?\d*$/
+const validInputName = /^[a-zA-Zа-яА-ЯёЁ\s]*$/;
+const validInputPhone = /^\+?\d*$/;
 
+const validator = (element, errorElement, validationFunc, errorMessageWrongInput, errorMessageEmptyString) => {
+    const validate = () => {
+        if (!validationFunc(element.value)) {
+            errorElement.textContent = errorMessageWrongInput;
+            element.classList.add('redBorder');
+            return true;
+        } 
+        else if (element.value === '') {
+            errorElement.textContent = errorMessageEmptyString;
+            element.classList.add('redBorder');
+            return true;
+        } 
+    };
 
+    element.addEventListener('blur', validate);
 
-const validator=(element,errorElement,validationfunc,errorMessageWrongInput,errorMessageEmptyString)=>{
-    element.addEventListener("blur",(e)=>{
-        if(!validationfunc(element.value)){
-            errorElement.textContent=errorMessageWrongInput
+    element.addEventListener('input', () => {
+        errorElement.textContent = '';
+        element.classList.remove('redBorder');
+    });
+
+    form.addEventListener('submit', (event) => {
+        if (validate()) {
+            event.preventDefault();
         }
-        else if(element.value===''){
-            errorElement.textContent=errorMessageEmptyString
-        }
-    })
-    element.addEventListener('input',()=>{
-        errorElement.textContent=``
-    })
+    });
 }
 
 validator(
@@ -42,12 +55,12 @@ validator(
     (value) => validInputPhone.test(value),
     `Это не ${PhoneNumber.getAttribute('placeholder')}`,
     `Поле ${PhoneNumber.getAttribute('placeholder')} не должно быть пустым`
-)
+);
 
 validator(
     EMail,
     errorMessage3,
-    ()=>EMail.validity.valid,
+    () => EMail.validity.valid,
     `Это не ${EMail.getAttribute('placeholder')}`,
     `Поле ${EMail.getAttribute('placeholder')} не должно быть пустым`
-)
+);

@@ -14,8 +14,31 @@ input:required {
 .input{
     width: 400px;
     height: 40px;
+    border-radius: 8px;
 }
 .error{
     color: red;
     font-size: 15px;
+}
+.redBorder{
+ border-color:red ;
+}
+#submitButton{
+    width: 160px;
+    height: 40px;
+}
+
+@media (max-width: 600px) {
+    .input {
+        width: 90%; 
+        max-width: none;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    .error {
+        font-size: 12px;
+    }
 }
