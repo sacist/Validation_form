@@ -10,18 +10,18 @@ const errorMessage1 = document.querySelector('.error1');
 const errorMessage2 = document.querySelector('.error2');
 const errorMessage3 = document.querySelector('.error3');
 
-const validInputName = /^[a-zA-Zа-яА-ЯёЁ\s]*$/;
-const validInputPhone = /^\+?\d*$/;
+const validInputName = /^[a-zA-Zа-яА-ЯёЁ]*$/;
+const validInputPhone = /^\+?\d{6,}$/;
 
 const validator = (element, errorElement, validationFunc, errorMessageWrongInput, errorMessageEmptyString) => {
     const validate = () => {
-        if (!validationFunc(element.value)) {
-            errorElement.textContent = errorMessageWrongInput;
+        if (element.value === '') {
+            errorElement.textContent = errorMessageEmptyString;
             element.classList.add('redBorder');
             return true;
         } 
-        else if (element.value === '') {
-            errorElement.textContent = errorMessageEmptyString;
+        else if (!validationFunc(element.value)) {
+            errorElement.textContent = errorMessageWrongInput;
             element.classList.add('redBorder');
             return true;
         } 
